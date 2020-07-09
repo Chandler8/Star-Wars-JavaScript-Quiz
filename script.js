@@ -1,6 +1,17 @@
 // Define my global variables
 var container = document.querySelector(".container");
 
+
+// Main "Start" button functionality
+(function startScreen() {
+
+    startBtn.addEventListener("click", function () {
+        startTimer();
+        quizQuestions();
+
+    });
+})();
+
 // Questions to answer and the list of answers beneath them
 var questionArr = [
     {
@@ -64,3 +75,36 @@ var questionArr = [
         correctAnswer: "3. 900 years old"
     }
 ];
+
+// Create a loop that goes through my array of questions
+function mainQuestions() {
+
+    // Set the main container to empty
+    container.innerHTML = "";
+
+    // Need to create a central section that holds the Questions 
+    var askQuestion = document.createElement("h2");
+    askQuestion.textContent = questionArr[q].question;
+    container.appendChild(askQuestion);
+
+    // Create buttons for different answers
+    for (var a = 0; a < questionArr[q].answers.length; a++) {
+        var options = document.createElement("button");
+        options.textContent = questionArr[q].answers[a];
+        container.appendChild(options);
+        options.addEventListener("click", checkAnswer);
+    }
+
+    // check if users choice is correct
+    function checkAnswer(e) {
+        if (e.target.textContent === questionArr[q].correctAnswer) {
+            q++;
+            popUp("Right, you are!");
+            mainQuestions();
+        } else {
+            q++;
+            popUp("The incorrect answer, you have guessed!");
+            mainQuestions();
+        }
+    }
+}
