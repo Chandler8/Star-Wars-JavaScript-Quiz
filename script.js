@@ -1,16 +1,10 @@
 // Define my global variables
 var container = document.querySelector(".container");
+var timer = document.querySelector("#timer");
+var ifCorrect = document.querySelector("#ifCorrect");
+var q = 0;
+var count = 60;
 
-
-// Main "Start" button functionality
-(function startScreen() {
-
-    startBtn.addEventListener("click", function () {
-        startTimer();
-        quizQuestions();
-
-    });
-})();
 
 // Questions to answer and the list of answers beneath them
 var questionArr = [
@@ -76,8 +70,37 @@ var questionArr = [
     }
 ];
 
+// Main "Start" button functionality
+(function startScreen() {
+
+    startBtn.addEventListener("click", function () {
+        startTimer();
+        quizQuestions();
+
+    });
+})();
+
+// Commence the counter
+function startTimer() {
+    var interval = setInterval(function () {
+        count--;
+        // check if time runs out
+        if (count <= 0) {
+            clearInterval(interval);
+            count = 0;
+            allDone();
+        }
+        // check if all questions answered
+        if (q >= questionArr.length) {
+            clearInterval(interval);
+            allDone();
+        }
+        timer.innerHTML = count;
+    }, 1000);
+}
+
 // Create a loop that goes through my array of questions
-function mainQuestions() {
+function quizQuestions() {
 
     // Set the main container to empty
     container.innerHTML = "";
@@ -95,16 +118,71 @@ function mainQuestions() {
         options.addEventListener("click", checkAnswer);
     }
 
-    // check if users choice is correct
+    // check the input of the player
     function checkAnswer(e) {
         if (e.target.textContent === questionArr[q].correctAnswer) {
             q++;
             popUp("Right, you are!");
-            mainQuestions();
+            quizQuestions();
         } else {
+            count -= 15;
             q++;
             popUp("The incorrect answer, you have guessed!");
-            mainQuestions();
+            quizQuestions();
         }
     }
+}
+
+// Tell user if the answer is correct or incorrect
+function popUp(label) {
+    ifCorrect.innerHTML = label;
+    ifCorrect.style.borderTop = "1px solid #ccc";
+    setTimeout(function () {
+        ifCorrect.innerHTML = "";
+        ifCorrect.style.borderTop = "none";
+    }, 1000);
+}
+
+// display user score and give ability to input name/initials
+function allDone() {
+    // clear the container
+    container.innerHTML = "";
+
+    // Create container on page
+    var header = document.createElement("h2");
+    header.textContent = "Quiz Over!";
+    container.appendChild(header);
+
+    var finalScore = document.createElement("p");
+    finalScore.textContent = "Your final score is: " + count;
+    container.appendChild(finalScore);
+
+    var inits = document.createElement("p");
+    inits.setAttribute("id", "inits");
+    inits.textContent = "Enter Name or Initials:"
+    var form = document.createElement("form");
+    var input = document.createElement("input");
+    var submit = document.createElement("button");
+    submit.setAttribute("id", "submitBtn");
+    submit.textContent = "Submit";
+
+    container.appendChild(inits);
+    container.appendChild(form);
+    form.appendChild(input);
+    form.appendChild(submit);
+
+    // Utilize local storage to allow player to keep their score/name on page
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        var user = input.value.toUpperCase();
+        var result = { userName: user, score: count };
+        var playerScores = localStorage.getItem('newscore') || '[]';
+        var newscores = [...JSON.parse(playerScores), result]
+            .sort((a, b) => b.score - a.score)
+            .slice(0, 5);
+        localStorage.setItem('newscore', JSON.stringify(newscores));
+
+        // Go to results page
+        location.replace("results.html");
+    });
 }

@@ -12,6 +12,10 @@ body {
     background-size: cover;
 }
 
+background-image {
+   opacity: inherit;
+}
+
 h1 {
     font-weight: 300;
     margin: 0px;
@@ -23,6 +27,7 @@ h1 {
 
 h2{
     color: aliceblue;
+    opacity: 200%;
 }
 
 .question {
@@ -66,3 +71,18 @@ button:hover {
     height: 200px;
     margin-top: 40px;
 }
+
+
+li {
+    padding: 5px;
+    margin-top: 10px;
+    background-color: lightslategrey;
+    opacity: 70%;
+}
+
+#ifCorrect {
+    margin-left: 21%;
+    margin-right: 33%;
+    margin-top: 1.5%;
+}
+
