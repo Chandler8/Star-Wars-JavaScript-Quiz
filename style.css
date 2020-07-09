@@ -6,7 +6,7 @@ body {
     color: #333;
     font-weight: 300;
     text-align: center;
-    background-image: url('StarWarsDeathStar1.jpg');
+    background-image: url('/Photos/StarWarsDeathStar1.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
