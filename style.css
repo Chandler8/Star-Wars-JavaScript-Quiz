@@ -1,11 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Work+Sans:300,600);
 
-*#timer {
+/* *#timer {
     background-position: center;
     background-position: initial;
     background-size: auto;
+} */
 
-
+#countdown{
+    color: aliceblue;
 }
 
 
@@ -24,6 +26,9 @@ body {
 background-image {
    opacity: inherit;
 }
+
+
+
 
 h1 {
     font-weight: 300;
@@ -87,12 +92,6 @@ li {
     margin-top: 10px;
     background-color: lightslategrey;
     opacity: 70%;
-}
-
-#ifCorrect {
-    margin-left: 21%;
-    margin-right: 33%;
-    margin-top: 1.5%;
 }
 
 @media (max-width: 690px) {

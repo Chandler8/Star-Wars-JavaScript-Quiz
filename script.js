@@ -1,7 +1,7 @@
 // Define my global variables
 var container = document.querySelector(".container");
 var timer = document.querySelector("#timer");
-var ifCorrect = document.querySelector("#ifCorrect");
+var whenCorrect = document.querySelector("#whenCorrect");
 var q = 0;
 var count = 60;
 
@@ -68,6 +68,26 @@ var questionArr = [
             "4. 1200 years old"
         ],
         correctAnswer: "3. 900 years old"
+    },
+    {
+        question: "Who did Princess Leia first kiss?",
+        answers: [
+            "1. Luke Skywalker",
+            "2. Han Solo",
+            "3. Darth Vader",
+            "4. Obi-Wan Kenobi"
+        ],
+        correctAnswer: "1. Luke Skywalker"
+    },
+    {
+        question: "Which character has a purple lightsaber?",
+        answers: [
+            "1. Qui-Gon Jinn",
+            "2. Anakin Skywalker",
+            "3. Darth Maul",
+            "4. Mace Windu"
+        ],
+        correctAnswer: "4. Mace Windu"
     }
 ];
 
@@ -85,13 +105,13 @@ var questionArr = [
 function startTimer() {
     var interval = setInterval(function () {
         count--;
-        // check if time runs out
+        // check time
         if (count <= 0) {
             clearInterval(interval);
             count = 0;
             allDone();
         }
-        // check if all questions answered
+        
         if (q >= questionArr.length) {
             clearInterval(interval);
             allDone();
@@ -136,11 +156,11 @@ function quizQuestions() {
 
 // Tell user if the answer is correct or incorrect
 function popUp(label) {
-    ifCorrect.innerHTML = label;
-    ifCorrect.style.borderTop = "1px solid #ccc";
+    whenCorrect.innerHTML = label;
+    whenCorrect.style.borderTop = "1px solid #ccc";
     setTimeout(function () {
-        ifCorrect.innerHTML = "";
-        ifCorrect.style.borderTop = "none";
+        whenCorrect.innerHTML = "";
+        whenCorrect.style.borderTop = "none";
     }, 1000);
 }
 
