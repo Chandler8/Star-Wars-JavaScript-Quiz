@@ -5,3 +5,8 @@ This project is a responsive and living Star Wars trivia style quiz that relies 
 AS A coding bootcamp student
 I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
+
+
+## Images
+
+![](HW4-pic1.JPG.png)
