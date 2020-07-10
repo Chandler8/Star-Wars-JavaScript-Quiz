@@ -7,3 +7,10 @@ I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 
 
+## Images
+
+![](Photos/HW4-pic1.JPG.jpg)
+
+![](Photos/HW4-pic2.JPG.jpg)
+
+![](Photos/HW4-pic3.JPG.jpg)
