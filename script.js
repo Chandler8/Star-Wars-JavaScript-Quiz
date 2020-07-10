@@ -6,6 +6,7 @@ var q = 0;
 var count = 60;
 
 
+
 // Questions to answer and the list of answers beneath them
 var questionArr = [
     {
